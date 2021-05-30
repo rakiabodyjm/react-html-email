@@ -37,7 +37,7 @@
     ],
     "react/react-in-jsx-scope": 0
   },
-  "ignorePatterns": ["**/dist/**", "**/build/**"],
+  "ignorePatterns": ["**/dist/**", "/build/**"],
   "globals": {
     "react": true
   }

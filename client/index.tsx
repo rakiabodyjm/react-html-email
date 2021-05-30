@@ -5,6 +5,7 @@ import ReactDOMServer from 'react-dom/server'
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core'
 import theme from './src/utils/theme'
 import OrderEmail from './src/pages/OrderEmail'
+import './global.css'
 // const App = React.createElement('h1', {}, 'hello world')
 
 // const App = () => {
@@ -21,8 +22,6 @@ import OrderEmail from './src/pages/OrderEmail'
 
 // // console.log(sheets.toString())
 
-// export default `<!DOCTYPE HTML> ${stringHtml} <style>${stringCss}</style>`
-
 const sheets = new ServerStyleSheets()
 const App = () => {
   return (
@@ -32,5 +31,7 @@ const App = () => {
   )
 }
 
-ReactDOM.render(sheets.collect(<App />), document.getElementById('#root'))
+ReactDOM.render(sheets.collect(<App />), document.getElementById('root'))
+// const stringHtml = ReactDOMServer.renderToString(sheets.collect(<App />))
+// document.getElementById('root')?.append(stringHtml, sheets.toString())
 // ReactDOM.render(sheets.collect(<App />), '#root')
