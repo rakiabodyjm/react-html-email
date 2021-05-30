@@ -1,5 +1,4 @@
 // eslint-disable-next-line no-use-before-define
-import * as React from 'react'
 import { render } from 'react-dom'
 // import ReactDOMServer from 'react-dom/server'
 import { CssBaseline, ServerStyleSheets, ThemeProvider } from '@material-ui/core'

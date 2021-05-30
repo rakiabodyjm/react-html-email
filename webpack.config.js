@@ -6,12 +6,14 @@ module.exports = {
     client: path.resolve(__dirname, './client/index.tsx'),
     // server: path.resolve(__dirname, './server/index.ts'),
   },
-  mode: 'development',
+  // mode: 'development',
   output: {
     // path: path.resolve(__dirname, 'build', 'client'),
     // filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
     filename: '[name].bundle.js',
+    publicPath: '/',
+    clean: true,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
@@ -53,7 +55,7 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, 'build', 'client'),
     compress: true,
     port: 5050,
     hot: true,

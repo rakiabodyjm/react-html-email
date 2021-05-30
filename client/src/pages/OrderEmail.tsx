@@ -34,6 +34,7 @@ const OrderEmail = () => {
           // background: 'url(/public/images/realm1000.png)',
           background: `url(${image})`,
           backgroundRepeat: 'no-repeat',
+          backgroundSize: 'contain',
         }}
       />
     </div>
