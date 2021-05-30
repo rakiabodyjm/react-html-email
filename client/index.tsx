@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-use-before-define
 import * as React from 'react'
-import ReactDOM from 'react-dom'
-import ReactDOMServer from 'react-dom/server'
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/core'
+import { render } from 'react-dom'
+// import ReactDOMServer from 'react-dom/server'
+import { CssBaseline, ServerStyleSheets, ThemeProvider } from '@material-ui/core'
 import theme from './src/utils/theme'
 import OrderEmail from './src/pages/OrderEmail'
 import './global.css'
@@ -26,12 +26,13 @@ const sheets = new ServerStyleSheets()
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <OrderEmail />
     </ThemeProvider>
   )
 }
 
-ReactDOM.render(sheets.collect(<App />), document.getElementById('root'))
+render(sheets.collect(<App />), document.getElementById('root'))
 // const stringHtml = ReactDOMServer.renderToString(sheets.collect(<App />))
 // document.getElementById('root')?.append(stringHtml, sheets.toString())
 // ReactDOM.render(sheets.collect(<App />), '#root')

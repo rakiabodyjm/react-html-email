@@ -2,11 +2,16 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: path.resolve(__dirname, './client/index.tsx'),
+  entry: {
+    client: path.resolve(__dirname, './client/index.tsx'),
+    // server: path.resolve(__dirname, './server/index.ts'),
+  },
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'build', 'client'),
-    filename: 'bundle.js',
+    // path: path.resolve(__dirname, 'build', 'client'),
+    // filename: 'bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    filename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
@@ -33,22 +38,29 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-        use: ['file-loader'],
+        test: /\.(jpg|jpeg|png|gif|mp3|svg)/,
+        // type: 'asset/resource',
+
+        type: 'asset/inline',
       },
+      // {
+      //   test: /\.(jpg|jpeg|png|gif|mp3|svg)$/i,
+      //   use: ['file-loader'],
+      //   options: {
+      //     name: '[path][name].[ext]',
+      //   },
+      // },
     ],
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 5050,
+    hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './client', 'index.html'),
     }),
-    // new MiniCssExtractPlugin({
-    //   filename: './global.css',
-    // }),
   ],
 }
