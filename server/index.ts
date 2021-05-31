@@ -8,7 +8,7 @@ import webpackConfig from '../webpack.config'
 //   [x: string]: any
 // }
 
-const compiler = webpack(webpackConfig)
+const compiler = webpack({ ...webpackConfig, mode: 'development' })
 // import apphtml from './client/app'
 // import apphtml from './client/index'
 // eslint-disable-next-line import/extensions
@@ -27,6 +27,8 @@ app.use(
     publicPath: webpackConfig.output.publicPath,
   })
 )
+
+app.use(require('webpack-hot-middleware')(compiler))
 
 app.listen(process.env.PORT || 6000, () => {
   console.log(`Listening at PORT: ${process.env.PORT}`)

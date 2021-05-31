@@ -1,11 +1,15 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { HotModuleReplacementPlugin } = require('webpack')
 
 module.exports = {
   entry: {
-    client: path.resolve(__dirname, './client/index.tsx'),
-    // server: path.resolve(__dirname, './server/index.ts'),
+    client: ['webpack-hot-middleware/client', path.resolve(__dirname, '/client/index')],
+    // client: path.resolve(__dirname, './client/index.tsx'),
   },
+  /**
+   * mode: development fails on typescript
+   */
   // mode: 'development',
   output: {
     // path: path.resolve(__dirname, 'build', 'client'),
@@ -64,5 +68,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './client', 'index.html'),
     }),
+    new HotModuleReplacementPlugin(),
   ],
 }

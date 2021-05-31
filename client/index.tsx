@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-use-before-define
-import { render } from 'react-dom'
+import { hydrate, render } from 'react-dom'
 // import ReactDOMServer from 'react-dom/server'
-import { CssBaseline, ServerStyleSheets, ThemeProvider } from '@material-ui/core'
-import theme from './src/utils/theme'
-import OrderEmail from './src/pages/OrderEmail'
+import { ServerStyleSheets } from '@material-ui/core'
 import './global.css'
+import React from 'react'
+import App from './src/App'
 // const App = React.createElement('h1', {}, 'hello world')
 
 // const App = () => {
@@ -22,16 +22,20 @@ import './global.css'
 // // console.log(sheets.toString())
 
 const sheets = new ServerStyleSheets()
-const App = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <OrderEmail />
-    </ThemeProvider>
-  )
+
+// render(sheets.collect(<App />), document.getElementById('root'))
+hydrate(sheets.collect(<App />), document.getElementById('root'))
+
+// eslint-disable-next-line no-undef
+interface NodeModuleHot extends NodeModule {
+  hot?: {
+    // eslint-disable-next-line no-unused-vars
+    accept?: (arg1?: string, arg2?: () => void) => void
+  }
+  // eslint-disable-next-line no-unused-vars
 }
 
-render(sheets.collect(<App />), document.getElementById('root'))
-// const stringHtml = ReactDOMServer.renderToString(sheets.collect(<App />))
-// document.getElementById('root')?.append(stringHtml, sheets.toString())
-// ReactDOM.render(sheets.collect(<App />), '#root')
+const webpackHotModule: NodeModuleHot = module
+if (webpackHotModule?.hot?.accept) {
+  webpackHotModule.hot.accept()
+}
